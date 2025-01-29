@@ -29,13 +29,13 @@ jobs:
       # Build the project
       - name: Build
         run: make 
-      ### tests
+      ### tests (needs the python3)
       ##- name: Build
       ##  run: make check
       # Create a release and attach the binary
       - name: "⬆️ Upload binaries if on master e.g. after merged PR"
         #if: github.ref == 'refs/heads/master'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           retention-days: 2 # we build every day via cron job. 2 days retention are enough to make sure there are always binaries available
           name: fuse_archive
