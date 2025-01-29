@@ -15,7 +15,7 @@ on:
 
 jobs:
   build-and-release:
-    runs-on: ubuntu-latest  # Use Ubuntu for Debian compatibility
+    runs-on: ubuntu-22.04
     steps:
       # Install dependencies
       - name: Install Dependencies
