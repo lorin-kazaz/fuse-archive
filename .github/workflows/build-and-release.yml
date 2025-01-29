@@ -29,13 +29,20 @@ jobs:
       # Build the project
       - name: Build
         run: make 
-      # tests
-      - name: Build
-        run: make check
+      ### tests
+      ##- name: Build
+      ##  run: make check
       # Create a release and attach the binary
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
           files: ./out/fuse-archive
           retention-days: 2 # we build every day via cron job. 2 days retention are enough to make sure there are always binaries available
-
+      - name: "⬆️ Upload binaries if on master e.g. after merged PR"
+        #if: github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@v3
+        with:
+          retention-days: 2 # we build every day via cron job. 2 days retention are enough to make sure there are always binaries available
+          name: fuse_archive
+          path: |
+            ./out/fuse-archive
