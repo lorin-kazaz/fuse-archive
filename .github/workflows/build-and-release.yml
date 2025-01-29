@@ -34,5 +34,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ./out/fuse-archive
-
+          retention-days: 2 # we build every day via cron job. 2 days retention are enough to make sure there are always binaries available
 
