@@ -22,13 +22,16 @@ jobs:
         run: |
           export DEBIAN_FRONTEND=noninteractive 
           sudo apt update 
-          sudo apt install -y libarchive-dev libfuse-dev
+          sudo apt install -y libboost-container-dev libfuse-dev libarchive-dev g++ pkg-config make pandoc python3
       # Checkout the code
       - uses: actions/checkout@v4
 
       # Build the project
       - name: Build
         run: make 
+      # tests
+      - name: Build
+        run: make check
       # Create a release and attach the binary
       - name: Release
         uses: softprops/action-gh-release@v2
