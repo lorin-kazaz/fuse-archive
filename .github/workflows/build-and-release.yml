@@ -2,12 +2,16 @@ name: Build and Release
 
 # Trigger the workflow whenever a new tag is pushed:
 on:
+  schedule:
+    - cron: '35 5 * * *' # run daily during a low load time (hopefully) to make sure there are always binaries to download
   push:
-    pull_request:
-      branches: [ "main" ]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
     tags:
       - 'v*'  # Example: Tags starting with 'v' (e.g., v1.0.0)
-  workflow_dispatch:
+  workflow_dispatch:  # This allows manual triggering
+
 
 jobs:
   build-and-release:
